@@ -1,0 +1,10 @@
+libaeon is a cross platform socket library designed for fast and efficient
+network communications.  It was designed with the thought in mind that
+network programming should not be as arbitrary and vague as it currently is.
+libaeon adds the "net" namespace to c++ programs utilizing it, to make
+the separation of class/library specific functions from already defined
+functions as well as to follow conventions already in place for c++
+programmers.  Installation is simple, and the footprint is small (around
+12kb currently.)  libaeon is designed to be extremely simple to use, yet
+still attempt to keep embedded and sbc developers in mind by being flexible,
+lightweight, and efficient.

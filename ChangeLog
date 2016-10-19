@@ -1,0 +1,80 @@
+v0.16.21 -  01/27/2009
+======================
+-changed ChangeLog version recording to indicate date of changes
+-fixed a gcc issue where stdlib.h and string.h were not being included
+
+v0.16.20
+========
+-fixed two places where Win32 fixes were affecting Linux/UNIX compilation
+ due to the typedef for socklen_t not being used
+-fixed MSDOS line ending issue. (OOPS)
+-added GetLibraryVersion to the net namespace to allow version retrieval of
+ the linked/shared libaeon library
+-slowed version revisioning (yet again) so that completely unstable features
+ aren't allowed to propagate into trunk
+
+v0.16.19
+========
+-fixed two instances of functions not returning anything when they should (bools)
+-verified MSVC2k5 compilation compatibility and usability
+
+v0.16.18
+=========
+-fixed breakage issue when compiling under MingW
+-replaced include guards with more standard style guards
+-tried to commit hara kiri after realizing i'd misspelled it previously, failed.
+
+v0.16.17
+=========
+-fixed some issues with CServerSocket regarding zeroing of memory
+-fixed bug with CServerSocket not accepting connections
+-removed testing code for CServerSocket
+
+v0.16.16
+=========
+-pondered hari kari after dealing with CServerSocket issues
+-broke CServerSocket. yay.
+-added some documentation, cleaned things up a bit
+-expanded CSocket some, to accomodate inheritance better
+  *CSocket now contains remote host information
+  *CSocket now has it's own .Close() method, for inheritance reasons
+  *improved use of the .connected member
+
+v0.16.15
+=========
+-created documentation for the website as well as the DoxyFile for end-user
+ developers
+-cleaned up a few things
+
+v0.16.14
+=========
+-totally diverged from previous versioning convention, it just didn't work.
+-attempted to use a bootstrapper, removed prior to commit.
+-removed doc building from the makefile(s)
+-added significant amounts of doxygen compatible comments to the source
+
+v0.16.13
+=========
+-fixed a serious bug where buffer data wasn't cleared prior to recv(), which
+ caused data corruption
+-moved to an even more convoluted directory structure/autotools setup
+-demodularized some files
+-created a more "lib-like" installation, which now installs libaeon.h into
+ $(PREFIX)/include so you can actually develop with aeon now.
+-added the ClearBuffer() function to CSocket so that arbitrary buffers may
+ be cleared by the library (usually those passed by Read() calls)
+
+v0.16.12
+=========
+-fixed a mistake on my part (earmbrust) which had linked in the GPL, rather
+ than the proper (BSD) license.
+-removed all remnants of the old (script based) build system
+
+v0.16.11
+=========
+-cleaned up a few simple things
+-made the code slightly more modular (separating code into multiple files,
+ rather than one large file)
+-refined autotools files so that builds work properly
+-fixed an automake macro error
+-began ChangeLog documentation (hey, that's an accomplishment!)
