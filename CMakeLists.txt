@@ -1,5 +1,11 @@
 cmake_minimum_required (VERSION 2.8)
 project (libaeon)
+
+set (AEON_MAJOR_VERSION 0)
+set (AEON_MINOR_VERSION 17)
+set (AEON_PATCH_VERSION 0)
+set (AEON_VERSION ${AEON_MAJOR_VERSION}.${AEON_MINOR_VERSION}.${AEON_PATCH_VERSION})
+
 include (CheckIncludeFiles)
 CHECK_INCLUDE_FILES (dlfcn.h HAVE_DLFCN_H)
 CHECK_INCLUDE_FILES (inttypes.h HAVE_INTTYPES_H)
@@ -13,4 +19,13 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_SOURCE_DI
 ADD_DEFINITIONS(-DHAVE_CONFIG_H)
 
 
-add_library(aeon src/libaeon.cpp)
+add_library(aeon SHARED src/libaeon.cpp)
+
+add_executable(http-client example/http-client.cpp)
+target_link_libraries(http-client aeon)
+
+add_executable(hello-world example/hello-world.cpp)
+target_link_libraries(hello-world aeon)
+
+add_executable(simple-server example/simple-server.cpp)
+target_link_libraries(simple-server aeon)

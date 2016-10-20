@@ -1,10 +1,9 @@
 **/*.o
+**/*.so
 **/*.Po
 **/*.a
 **/config.log
-/example/hello-world
-/example/http-client
-/example/simple-server
+**/config.h
 CMakeCache.txt
 CMakeFiles
 CMakeScripts

@@ -1,3 +1,7 @@
+/******************************************************************
+ * hello-world.cpp - A simple simple "Hello World" server
+ * Copyright (c) 2006-2016 Elden Armbrust
+ ******************************************************************/
 #include <iostream>
 #include <libaeon.h>
 #include <signal.h>
@@ -13,7 +17,7 @@ static net::CSocket *__client;
 
 int main() {
   std::cout << "hello-world.cpp - A simple libaeon hello world server" << std::endl;
-  std::cout << "2007 (c) Elden Armbrust (BSD License)" << std::endl;
+  std::cout << "2007-2016 (c) Elden Armbrust (BSD License)" << std::endl;
   std::cout << "Press Ctrl-C to exit." << std::endl;
   net::CServerSocket *server = new net::CServerSocket();
   __server = server;

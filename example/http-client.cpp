@@ -1,6 +1,6 @@
 /******************************************************************
  * http-client.cpp - A simple binary/text http client using libaeon
- * Copyright (c) 2006-2007 Elden Armbrust
+ * Copyright (c) 2006-2016 Elden Armbrust
  ******************************************************************/
 #include <iostream>
 #include <stdio.h>
