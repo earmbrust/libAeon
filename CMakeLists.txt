@@ -1,3 +1,16 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 2.8)
 project (libaeon)
-add_library(libaeon src/libaeon.cpp)
+include (CheckIncludeFiles)
+CHECK_INCLUDE_FILES (dlfcn.h HAVE_DLFCN_H)
+CHECK_INCLUDE_FILES (inttypes.h HAVE_INTTYPES_H)
+CHECK_INCLUDE_FILES (memory.h HAVE_MEMORY_H)
+CHECK_INCLUDE_FILES (stdbool.h HAVE_STDBOOL_H)
+CHECK_INCLUDE_FILES (stdint.h HAVE_STDINT_H)
+CHECK_INCLUDE_FILES (stdlib.h HAVE_STDLIB_H)
+CHECK_INCLUDE_FILES (strings.h HAVE_STRINGS_H)
+CHECK_INCLUDE_FILES (string.h HAVE_string_H)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
+ADD_DEFINITIONS(-DHAVE_CONFIG_H)
+
+
+add_library(aeon src/libaeon.cpp)
