@@ -4,6 +4,9 @@
 **/*.a
 **/config.log
 **/config.h
+**/hello-world
+**/simple-server
+**/http-client
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
