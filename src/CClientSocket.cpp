@@ -19,38 +19,37 @@ namespace net
         return this->Connect();
     }
     /**
-     * The Connect() method allows for a parameterless call to be made to either re-establish a connection
+     * The Connect() method allows for a parameterless call to be made to either re-establish a
+     * connection
      * or to establish a new connection on an existing, filled CClientSocket object.
      * \author Elden Armbrust
-     * \return A boolean value which corresponds to whether the connection succeeded (true) or failed (false).
+     * \return A boolean value which corresponds to whether the connection succeeded (true) or failed
+     * (false).
      */
     bool CClientSocket::Connect()
     {
 
-        if (this->sockfd < 0)
-        {
+        if (this->sockfd < 0) {
             error_code = ERR_NOSOCKET;
             error_state = SOCK_CREATE;
             return false;
         }
 
         this->server = gethostbyname(this->remote_host.c_str());
-        if (this->server == NULL)
-        {
+        if (this->server == NULL) {
             error_code = ERR_NOHOST;
             error_state = SOCK_RESOLVE;
             return false;
         }
-        this->remote_ip = inet_ntoa(*((struct in_addr *)server->h_addr));
-        memset((char *) &serv_addr, 0, sizeof(serv_addr));
+        this->remote_ip = inet_ntoa(*((struct in_addr*)server->h_addr));
+        memset((char*)&serv_addr, 0, sizeof(serv_addr));
         serv_addr.sin_family = AF_INET;
-        //flawfinder finds issue with this call, claiming that memcpy doesn't check the bounds
-        //of the dest pointer...
-        memcpy((char *)&serv_addr.sin_addr.s_addr, (char *)server->h_addr, server->h_length);
+        // flawfinder finds issue with this call, claiming that memcpy doesn't check the bounds
+        // of the dest pointer...
+        memcpy((char*)&serv_addr.sin_addr.s_addr, (char*)server->h_addr, server->h_length);
         serv_addr.sin_port = htons(this->port);
         connect_code = connect(sockfd, (const sockaddr*)&serv_addr, sizeof(serv_addr));
-        if (connect_code < 0)
-        {
+        if (connect_code < 0) {
             error_code = connect_code;
             error_state = SOCK_CONNECT;
             return false;
@@ -62,7 +61,7 @@ namespace net
 
     CClientSocket::CClientSocket()
     {
-            this->sockfd = socket(CSocket::DefaultFamilyType, CSocket::StreamSocketType, 0);
+        this->sockfd = socket(CSocket::DefaultFamilyType, CSocket::StreamSocketType, 0);
     }
 
     CClientSocket::CClientSocket(const char* remote, int port)
@@ -71,7 +70,7 @@ namespace net
         this->Connect(remote, port);
     }
 
-    CClientSocket::CClientSocket(std::string *remote, int port)
+    CClientSocket::CClientSocket(std::string* remote, int port)
 
     {
         this->sockfd = socket(CSocket::DefaultFamilyType, CSocket::StreamSocketType, 0);
@@ -79,6 +78,7 @@ namespace net
     }
 
     CClientSocket::~CClientSocket()
-    {}
+    {
+    }
 }
 #endif

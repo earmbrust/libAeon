@@ -19,8 +19,10 @@
 #include "CSocketSet.cpp"
 #include "CEventSocketSet.cpp"
 
-namespace net {
-    const char* GetLibraryVersion(){
+namespace net
+{
+    const char* GetLibraryVersion()
+    {
         return VERSION;
     };
 };

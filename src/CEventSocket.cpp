@@ -67,9 +67,7 @@ namespace net
         return false;
     };
 
-    void CEventSocket::OnWrite(const char* buffer, int size, int sentsize)
-    {};
-
+    void CEventSocket::OnWrite(const char* buffer, int size, int sentsize) {};
 }
 
 #endif

@@ -53,7 +53,8 @@ namespace net
      */
     bool CEventSocketSet::Remove(unsigned int index)
     {
-        if (index > this->Sockets.size()) return false;
+        if (index > this->Sockets.size())
+            return false;
         this->Sockets.erase(this->Sockets.begin() + index, this->Sockets.begin() + (index + 1));
         return true;
     }
@@ -74,7 +75,8 @@ namespace net
      */
     bool CEventSocketSet::Remove(unsigned int index, unsigned int count)
     {
-        if (count > this->Sockets.size() || (index + count) > this->Sockets.size()) return false;
+        if (count > this->Sockets.size() || (index + count) > this->Sockets.size())
+            return false;
         this->Sockets.erase(this->Sockets.begin() + index, this->Sockets.begin() + (index + count));
         return true;
     }
@@ -86,17 +88,15 @@ namespace net
 
     void CEventSocketSet::Poll()
     {
-        for (unsigned int i = 0; i < Sockets.size(); ++i)
-        {
+        for (unsigned int i = 0; i < Sockets.size(); ++i) {
             this->Sockets[i]->Poll();
         }
     }
 
     void CEventSocketSet::Cleanup()
     {
-        //not yet complete...
+        // not yet complete...
     }
-
 }
 
 #endif

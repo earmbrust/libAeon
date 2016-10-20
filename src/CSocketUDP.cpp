@@ -19,8 +19,7 @@ namespace net
         this->net_family = CSocket::DefaultFamilyType;
         this->connected = false;
         this->sockfd = socket(CSocket::DefaultFamilyType, CSocket::DatagramSocketType, 0);
-        if (this->sockfd < 0)
-        {
+        if (this->sockfd < 0) {
             error_code = ERR_NOSOCKET;
             error_state = SOCK_CREATE;
             return;

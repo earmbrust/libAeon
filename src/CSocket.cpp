@@ -66,17 +66,15 @@ namespace net
     }
 
 
-
     CSocket::CSocket()
     {
 #ifdef WIN32
-        this->wsaret = WSAStartup(MAKEWORD( 2, 0 ), &wsadata);
+        this->wsaret = WSAStartup(MAKEWORD(2, 0), &wsadata);
 #endif
         this->net_family = CSocket::DefaultFamilyType;
         this->connected = false;
         this->sockfd = socket(CSocket::DefaultFamilyType, CSocket::DefaultSocketType, 0);
-        if (this->sockfd < 0)
-        {
+        if (this->sockfd < 0) {
             error_code = ERR_NOSOCKET;
             error_state = SOCK_CREATE;
             return;
@@ -110,7 +108,8 @@ namespace net
     bool CSocket::Close()
     {
 #ifdef __linux__
-        if (this->connected == true) close(sockfd);
+        if (this->connected == true)
+            close(sockfd);
 #endif
 #ifdef _WIN32
         closesocket(sockfd);
@@ -142,7 +141,7 @@ namespace net
     int CSocket::Write(char* data, int size)
     {
         int bytesSent;
-        bytesSent = send(sockfd, data, size*sizeof(char), CSocket::NULLFlag);
+        bytesSent = send(sockfd, data, size * sizeof(char), CSocket::NULLFlag);
         return bytesSent;
     }
 
@@ -162,7 +161,8 @@ namespace net
      * Reads character data from the socket without formatting.
      * \author Elden Armbrust
      * \param buffer A character array which will be filled with the incoming data.
-     * \param size The number of bytes to be read.  This number must not be larger than the size of buffer.
+     * \param size The number of bytes to be read.  This number must not be larger than the size of
+     * buffer.
      * \return The number of bytes read from the socket.
      */
     int CSocket::Read(char* buffer, int size)
@@ -171,7 +171,8 @@ namespace net
         this->ClearBuffer(buffer, size);
         bytesRead = recv(sockfd, buffer, size, 0);
         this->n = bytesRead;
-        if (bytesRead == 0) this->connected = false;
+        if (bytesRead == 0)
+            this->connected = false;
         return bytesRead;
     }
 
@@ -179,30 +180,29 @@ namespace net
      * Reads character data from the socket without formatting until size bytes are received.
      * \author Elden Armbrust
      * \param buffer A character array which will be filled with the incoming data.
-     * \param size The number of bytes to be read.  This number must not be larger than the size of buffer.
+     * \param size The number of bytes to be read.  This number must not be larger than the size of
+     * buffer.
      * \return The number of bytes read from the socket.
      */
     int CSocket::ReadUntil(char* buffer, int size)
     {
         int bytesRead;
         std::string temp;
-        char *tempbuffer;
+        char* tempbuffer;
         int totalbytes = 0;
-        tempbuffer = (char*)malloc(sizeof(char)*size);
-        while (totalbytes < size)
-        {
+        tempbuffer = (char*)malloc(sizeof(char) * size);
+        while (totalbytes < size) {
             this->ClearBuffer(tempbuffer, size);
             bytesRead = recv(sockfd, tempbuffer, size, 0);
             this->n = bytesRead;
-            if (bytesRead == 0)
-            {
+            if (bytesRead == 0) {
                 this->connected = false;
                 break;
             };
-            if (bytesRead == 0) this->connected = false;
+            if (bytesRead == 0)
+                this->connected = false;
             totalbytes += bytesRead;
-            if (bytesRead > 0)
-            {
+            if (bytesRead > 0) {
                 temp += tempbuffer;
             };
         };
@@ -212,7 +212,7 @@ namespace net
 
     int CSocket::Read()
     {
-        return this->Read(inbuffer, CSocket::MaxBufferSize-1);
+        return this->Read(inbuffer, CSocket::MaxBufferSize - 1);
     }
     /**
      * Reads character data from the socket without formatting.
@@ -225,11 +225,13 @@ namespace net
     {
         int bytesRead;
         std::string retVal;
-        bytesRead = recv(sockfd, this->inbuffer, CSocket::MaxBufferSize-1, 0);
+        bytesRead = recv(sockfd, this->inbuffer, CSocket::MaxBufferSize - 1, 0);
         retVal = this->inbuffer;
         this->n = bytesRead;
-        if (bytesRead == 0) this->connected = false;
-        if (bytesRead == 0) this->connected = false;
+        if (bytesRead == 0)
+            this->connected = false;
+        if (bytesRead == 0)
+            this->connected = false;
         return retVal;
     }
 
@@ -247,8 +249,6 @@ namespace net
     }
 
 
-
-
     int CSocket::ReadLine(char* buffer, int size)
     {
         int bytesRead;
@@ -257,16 +257,19 @@ namespace net
         char tempbuff[1];
 
         this->ClearBuffer(buffer, size);
-        for (int i = 0; i < size; ++i)
-        {
+        for (int i = 0; i < size; ++i) {
             memset(tempbuff, 0, sizeof(char));
             bytesRead = recv(sockfd, tempbuff, 1, 0);
-            if (bytesRead == 0) this->connected = false;
+            if (bytesRead == 0)
+                this->connected = false;
             this->n += bytesRead;
 
-            if (strcmp(tempbuff, "\r") == 0) bCarriage = true;
-            if (strcmp(tempbuff, "\n") == 0) bLinefeed = true;
-            if (bCarriage == true && bLinefeed == true) i=size;
+            if (strcmp(tempbuff, "\r") == 0)
+                bCarriage = true;
+            if (strcmp(tempbuff, "\n") == 0)
+                bLinefeed = true;
+            if (bCarriage == true && bLinefeed == true)
+                i = size;
             buffer[i] = tempbuff[0];
         }
         return this->n;
@@ -274,26 +277,22 @@ namespace net
 
     int CSocket::SetBlocking(bool flag)
     {
-        if (flag == false)
-        {
+        if (flag == false) {
 #ifdef _WIN32
             u_long mode = 1;
             ioctlsocket(sockfd, FIONBIO, &mode);
 #endif
 #ifdef __linux__
-            fcntl(sockfd, F_SETFL, flags|O_NONBLOCK);
+            fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
 #endif
-        }
-        else
-        {
-            #ifdef _WIN32
+        } else {
+#ifdef _WIN32
             u_long mode = 0;
             ioctlsocket(sockfd, FIONBIO, &mode);
 #endif
 #ifdef __linux__
             fcntl(sockfd, F_SETFL, flags);
 #endif
-
         }
         this->blocking = flag;
         return this->blocking;
