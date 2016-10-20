@@ -1,8 +1,9 @@
 /*********************************************************************
  * libaeon - A simple, lightweight, cross platform networking library
- * Copyright 2006-2007 (c) Elden Armbrust
+ * Copyright 2006-2016 (c) Elden Armbrust
  * This software is licensed under the BSD software license.
  *********************************************************************/
+
 #ifndef _LIBAEON_H
 #define _LIBAEON_H
 /*!
@@ -28,6 +29,7 @@
     #include <netinet/in.h>
     #include <sys/types.h>
     #include <fcntl.h>
+    #include <unistd.h>
 #endif
 
 //multi-platform includes
