@@ -2,3 +2,6 @@
 **/*.Po
 **/*.a
 **/config.log
+/example/hello-world
+/example/http-client
+/example/simple-server

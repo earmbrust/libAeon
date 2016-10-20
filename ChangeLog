@@ -1,5 +1,5 @@
-v0.16.21 -  01/27/2009
-======================
+v0.16.21
+========
 -changed ChangeLog version recording to indicate date of changes
 -fixed a gcc issue where stdlib.h and string.h were not being included
 
