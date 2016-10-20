@@ -30,7 +30,7 @@ namespace net {
 
 
   bool CSocketSet::Add() {
-    CSocket* socket_ref;
+    CSocket* socket_ref = new CSocket();
     this->Sockets.push_back(socket_ref);
     return true;
   }
@@ -48,7 +48,7 @@ namespace net {
    * closing on the sockets to be removed.  Those tasks should be done
    * prior to removal for the most simple transition.
    */
-  bool CSocketSet::Remove(int index) {
+  bool CSocketSet::Remove(unsigned int index) {
   	if (index > this->Sockets.size()) return false;
   	this->Sockets.erase(this->Sockets.begin() + index, this->Sockets.begin() + (index + 1));
   	return true;
@@ -68,7 +68,7 @@ namespace net {
    * closing on the sockets to be removed.  Those tasks should be done
    * prior to removal for the most simple transition.
    */
-  bool CSocketSet::Remove(int index, int count) {
+  bool CSocketSet::Remove(unsigned int index, unsigned int count) {
   	if (count > this->Sockets.size() || (index + count) > this->Sockets.size()) return false;
     this->Sockets.erase(this->Sockets.begin() + index, this->Sockets.begin() + (index + count));
  	return true;

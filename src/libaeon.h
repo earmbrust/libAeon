@@ -249,8 +249,8 @@ namespace net
         std::vector<CSocket*> Sockets;
         bool Add(CSocket* socket_ref);
         bool Add();
-        bool Remove(int index);
-        bool Remove(int index, int count);
+        bool Remove(unsigned int index);
+        bool Remove(unsigned int index, unsigned int count);
         int Size();
     };
 
@@ -267,8 +267,8 @@ namespace net
         std::vector<CEventSocket*> Sockets;
         bool Add(CEventSocket* socket_ref);
         bool Add();
-        bool Remove(int index);
-        bool Remove(int index, int count);
+        bool Remove(unsigned int index);
+        bool Remove(unsigned int index, unsigned int count);
         int Size();
         void Poll();
         void Cleanup();
