@@ -1,6 +1,6 @@
 /*********************************************************************
  * libaeon - A simple, lightweight, cross platform networking library
- * Copyright 2006-2007 (c) Elden Armbrust
+ * Copyright 2006-2016 (c) Elden Armbrust
  * This software is licensed under the BSD software license.
  *********************************************************************/
 #ifndef _CSOCKET_CPP
@@ -127,7 +127,7 @@ namespace net
      */
     int CSocket::Write(char* data)
     {
-        int bytesSent, bytesLeft;
+        int bytesSent;
         bytesSent = send(sockfd, data, strlen(data), 0);
         return bytesSent;
     }
@@ -141,7 +141,7 @@ namespace net
      */
     int CSocket::Write(char* data, int size)
     {
-        int bytesSent, bytesLeft;
+        int bytesSent;
         bytesSent = send(sockfd, data, size*sizeof(char), CSocket::NULLFlag);
         return bytesSent;
     }
@@ -294,8 +294,9 @@ namespace net
             fcntl(sockfd, F_SETFL, flags);
 #endif
 
-            }
-this->blocking = flag;
+        }
+        this->blocking = flag;
+        return this->blocking;
     }
 }
 #endif

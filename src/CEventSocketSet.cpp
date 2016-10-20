@@ -1,7 +1,6 @@
-
 /*********************************************************************
  * libaeon - A simple, lightweight, cross platform networking library
- * Copyright 2006-2007 (c) Elden Armbrust
+ * Copyright 2006-2016 (c) Elden Armbrust
  * This software is licensed under the BSD software license.
  *********************************************************************/
 
@@ -34,7 +33,7 @@ namespace net
 
     bool CEventSocketSet::Add()
     {
-        CEventSocket* socket_ref;
+        CEventSocket* socket_ref = new CEventSocket();
         this->Sockets.push_back(socket_ref);
         return true;
     }
@@ -52,7 +51,7 @@ namespace net
      * closing on the sockets to be removed.  Those tasks should be done
      * prior to removal for the most simple transition.
      */
-    bool CEventSocketSet::Remove(int index)
+    bool CEventSocketSet::Remove(unsigned int index)
     {
         if (index > this->Sockets.size()) return false;
         this->Sockets.erase(this->Sockets.begin() + index, this->Sockets.begin() + (index + 1));
@@ -73,7 +72,7 @@ namespace net
      * closing on the sockets to be removed.  Those tasks should be done
      * prior to removal for the most simple transition.
      */
-    bool CEventSocketSet::Remove(int index, int count)
+    bool CEventSocketSet::Remove(unsigned int index, unsigned int count)
     {
         if (count > this->Sockets.size() || (index + count) > this->Sockets.size()) return false;
         this->Sockets.erase(this->Sockets.begin() + index, this->Sockets.begin() + (index + count));

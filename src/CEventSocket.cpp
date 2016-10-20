@@ -1,6 +1,6 @@
 /*********************************************************************
  * libaeon - A simple, lightweight, cross platform networking library
- * Copyright 2006-2007 (c) Elden Armbrust
+ * Copyright 2006-2016 (c) Elden Armbrust
  * This software is licensed under the BSD software license.
  *********************************************************************/
 
@@ -41,7 +41,7 @@ namespace net
      */
     int CEventSocket::Write(char* data)
     {
-        int bytesSent, bytesLeft;
+        int bytesSent;
         bytesSent = send(sockfd, data, strlen(data), 0);
         this->OnWrite(data, strlen(data), bytesSent);
         return bytesSent;
