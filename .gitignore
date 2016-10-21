@@ -13,3 +13,13 @@ CMakeScripts
 Makefile
 cmake_install.cmake
 install_manifest.txt
+*.vcxproj
+aeon.dir/
+*.filters
+*.pdb
+*.log
+*.lastbuildstate
+*.tlog
+*.opendb
+*.db
+*.sln
