@@ -42,7 +42,7 @@ int main(void)
             printf("Socket error!\r\n");
         }
         if (socketset->Sockets[socketset->Size() - 1]->connected == true) {
-            if (socketset->Sockets[socketset->Size() - 1]->Write("Hello, world!\r\n") == -1) {
+            if (socketset->Sockets[socketset->Size() - 1]->Write((char *)"Hello, world!\r\n") == -1) {
                 printf("Error sending data to client!\r\n");
             }
             printf("Sent message.\r\n");

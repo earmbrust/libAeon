@@ -39,7 +39,7 @@ int main()
         client = server->Accept();  //attempt to accept the connection
         if (client->connected != false) { //check if the connection succeeded
             std::cout << "Client accepted." << std::endl;
-            client->Write("Hello world!\n"); //send our hello world
+            client->Write((char *)"Hello world!\n"); //send our hello world
             client->Close(); //close the socket and prepare for another connection
         }
 
