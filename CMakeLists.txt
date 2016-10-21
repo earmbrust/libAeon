@@ -21,6 +21,8 @@ ADD_DEFINITIONS(-DHAVE_CONFIG_H)
 include_directories(src)
 
 add_library(aeon SHARED src/libaeon.cpp)
+add_library(aeon-static STATIC src/libaeon.cpp)
+set_target_properties(aeon-static PROPERTIES OUTPUT_NAME aeon)
 IF (WIN32) 
 	TARGET_LINK_LIBRARIES(aeon ws2_32)
 ENDIF(WIN32)
