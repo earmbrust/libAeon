@@ -18,8 +18,12 @@ CHECK_INCLUDE_FILES (string.h HAVE_string_H)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
 ADD_DEFINITIONS(-DHAVE_CONFIG_H)
 
+include_directories(src)
 
 add_library(aeon SHARED src/libaeon.cpp)
+IF (WIN32) 
+	TARGET_LINK_LIBRARIES(aeon ws2_32)
+ENDIF(WIN32)
 
 add_executable(http-client example/http-client.cpp)
 target_link_libraries(http-client aeon)
