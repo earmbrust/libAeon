@@ -21,6 +21,7 @@
     #define _CRT_SECURE_NO_DEPRECATE 1
     #include <winsock2.h>
     #include <ws2tcpip.h>    
+#include <io.h>
     typedef int socklen_t;
 #endif
 #ifdef __linux__
@@ -29,11 +30,12 @@
     #include <arpa/inet.h>
     #include <netinet/in.h>
     #include <sys/types.h>
+    #include <sys/io.h>
     #include <unistd.h>
 #endif
 
 //multi-platform includes
-#include <io.h>
+
 #include <fcntl.h>
 #include <string>
 #include <vector>
