@@ -56,8 +56,8 @@ namespace net
     CSocket* CServerSocket::Accept()
     {
         CSocket* sockClient = new CSocket;
-        struct sockaddr_in remote_addr;
-        socklen_t sin_size = sizeof(remote_addr);
+        // struct sockaddr_in remote_addr;
+        socklen_t sin_size = sizeof(sockClient->remote_addr);
         int acceptret
             = accept(this->server_socket, (struct sockaddr*)&sockClient->remote_addr, &sin_size);
         if (acceptret < 0) {

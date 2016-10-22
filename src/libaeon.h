@@ -16,10 +16,11 @@
  */
 
 
-#ifdef _WIN32
+#ifdef WIN32
     #define WIN32_LEAN_AND_MEAN
     #define _CRT_SECURE_NO_DEPRECATE 1
     #include <winsock2.h>
+    #include <ws2tcpip.h>    
     typedef int socklen_t;
 #endif
 #ifdef __linux__
@@ -28,11 +29,12 @@
     #include <arpa/inet.h>
     #include <netinet/in.h>
     #include <sys/types.h>
-    #include <fcntl.h>
     #include <unistd.h>
 #endif
 
 //multi-platform includes
+#include <io.h>
+#include <fcntl.h>
 #include <string>
 #include <vector>
 #include <string.h>
@@ -153,7 +155,7 @@ namespace net
         ~CClientSocket();
     protected:
         struct sockaddr_in serv_addr;
-        struct hostent *server;
+        struct addrinfo *server;
     };
 
     /**
