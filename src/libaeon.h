@@ -32,6 +32,7 @@
     #include <sys/types.h>
     #include <sys/io.h>
     #include <unistd.h>
+    #define _close close
 #endif
 
 //multi-platform includes
