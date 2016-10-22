@@ -59,10 +59,10 @@ namespace net
         // of the dest pointer...
         // memcpy((char*)&serv_addr.sin_addr.s_addr, (char*)server->h_addr, server->h_length);
         // serv_addr.sin_port = htons(this->port);
-        
+
         for(connection = this->server; connection != NULL; connection = connection->ai_next) {
             if ((this->sockfd = socket(connection->ai_family, connection->ai_socktype,
-                    connection->ai_protocol)) == -1) {
+                                       connection->ai_protocol)) == -1) {
                 perror("socket");
                 continue;
             }

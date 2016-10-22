@@ -17,22 +17,22 @@
 
 
 #ifdef WIN32
-    #define WIN32_LEAN_AND_MEAN
-    #define _CRT_SECURE_NO_DEPRECATE 1
-    #include <winsock2.h>
-    #include <ws2tcpip.h>    
+#define WIN32_LEAN_AND_MEAN
+#define _CRT_SECURE_NO_DEPRECATE 1
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #include <io.h>
-    typedef int socklen_t;
+typedef int socklen_t;
 #endif
 #ifdef __linux__
-    #include <sys/socket.h>
-    #include <netdb.h>
-    #include <arpa/inet.h>
-    #include <netinet/in.h>
-    #include <sys/types.h>
-    #include <sys/io.h>
-    #include <unistd.h>
-    #define _close close
+#include <sys/socket.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/types.h>
+#include <sys/io.h>
+#include <unistd.h>
+#define _close close
 #endif
 
 //multi-platform includes
@@ -221,7 +221,7 @@ namespace net
       * OnWrite() member functions overridden.
       */
     class CEventClientSocket: public CClientSocket
-        {};
+    {};
 
 
     /**
@@ -238,7 +238,7 @@ namespace net
       * OnWrite() member functions overridden.
       */
     class CEventServerSocket: public CServerSocket, public CEventSocket
-        {};
+    {};
 
 
     /**
@@ -283,7 +283,7 @@ namespace net
     class CSocketUDP : public CSocket
     {
     public:
-    CSocketUDP();
+        CSocketUDP();
         int Write(char* data, int size);
         int Write(char* data);
         int Write(std::string data);
