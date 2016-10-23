@@ -4,7 +4,7 @@
  ******************************************************************/
 
 #include <libaeon.h>
-
+#define SERVER_PORT 2300
 class childsock : public net::CEventSocket
 {
     bool OnRead(const char* buffer, int size);
@@ -22,13 +22,13 @@ int main(void)
     net::CServerSocket* server = new net::CServerSocket();
 
     net::CEventSocketSet* socketset = new net::CEventSocketSet();
-    if (server->Listen(23) == false) {
+    if (server->Listen(SERVER_PORT) == false) {
         printf("Error when opening port.\r\n");
         return EXIT_FAILURE;
     }
     printf("Waiting for connection...\r\n");
     //  childsock* client =
-    childsock* client;
+    // childsock* client;
     while (1) {
         socketset->Add((net::CEventSocket*)(new childsock));
 
