@@ -46,20 +46,6 @@ namespace net
             exit(1);
         }
 
-        // this->server = gethostbyname(this->remote_host.c_str());
-        // if (this->server == NULL) {
-        //     error_code = ERR_NOHOST;
-        //     error_state = SOCK_RESOLVE;
-        //     return false;
-        // }
-        // this->remote_ip = inet_ntoa(*((struct in_addr*)server->h_addr));
-        // memset((char*)&serv_addr, 0, sizeof(serv_addr));
-        // serv_addr.sin_family = AF_INET;
-        // flawfinder finds issue with this call, claiming that memcpy doesn't check the bounds
-        // of the dest pointer...
-        // memcpy((char*)&serv_addr.sin_addr.s_addr, (char*)server->h_addr, server->h_length);
-        // serv_addr.sin_port = htons(this->port);
-
         for(connection = this->server; connection != NULL; connection = connection->ai_next) {
             if ((this->sockfd = socket(connection->ai_family, connection->ai_socktype,
                                        connection->ai_protocol)) == -1) {
@@ -76,13 +62,7 @@ namespace net
             break; // if we get here, we must have connected successfully
         }
 
-        // connect_code = connect(sockfd, (const sockaddr*)&serv_addr, sizeof(serv_addr));
 
-        // if (connect_code < 0) {
-        //     error_code = connect_code;
-        //     error_state = SOCK_CONNECT;
-        //     return false;
-        // }
         this->connected = true;
         freeaddrinfo(this->server); // all done with this structure
         this->ClearBuffers();
