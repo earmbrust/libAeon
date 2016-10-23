@@ -23,3 +23,6 @@ aeon.dir/
 *.opendb
 *.db
 *.sln
+Debug/
+build/
+Release/
