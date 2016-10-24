@@ -35,6 +35,7 @@ int main(void)
         socketset->Add((net::CEventSocket*)(new childsock));
 
         // childsock = socketset->Sockets[socketset->Size()-1];
+        socketset->Sockets[socketset->Size() - 1] = (childsock*)server->Accept();
         socketset->Sockets[socketset->Size() - 1] = static_cast<childsock*>(server)->Accept();
         if (socketset->Sockets[socketset->Size() - 1]->connected == true) {
             ++iConnectionCount;
