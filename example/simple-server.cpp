@@ -5,12 +5,12 @@
 
 #include <libaeon.h>
 #define SERVER_PORT 2300
-class childsock : public net::CEventSocket
+class clientSocket : public net::CEventSocket
 {
     bool OnRead(const char* buffer, int size);
 };
 
-bool childsock::OnRead(const char* buffer, int size)
+bool clientSocket::OnRead(const char* buffer, int size)
 {
     printf("Client said: %s\r\n", buffer);
     return true;
@@ -29,13 +29,11 @@ int main(void)
         return EXIT_FAILURE;
     }
     printf("Waiting for connection...\r\n");
-    //  childsock* client =
-    // childsock* client;
     while (1) {
-        socketset->Add((net::CEventSocket*)(new childsock));
+        socketset->Add((net::CEventSocket*)(new clientSocket));
 
-        // childsock = socketset->Sockets[socketset->Size()-1];
-        socketset->Sockets[socketset->Size() - 1] = (childsock*)server->Accept();
+        // clientSocket = socketset->Sockets[socketset->Size()-1];
+        socketset->Sockets[socketset->Size() - 1] = (clientSocket*)server->Accept();
         if (socketset->Sockets[socketset->Size() - 1]->connected == true) {
             ++iConnectionCount;
 
@@ -55,7 +53,8 @@ int main(void)
         socketset->Poll();
 
         server->Close();
-        delete server;
-        delete socketset;
+
     }
+    delete server;
+    delete socketset;
 }

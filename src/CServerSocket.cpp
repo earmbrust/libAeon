@@ -15,7 +15,9 @@ namespace net
     CServerSocket::CServerSocket()
     {
     }
-
+    CServerSocket::~CServerSocket()
+    {
+    }
     bool CServerSocket::Listen()
     {
         return this->Listen(this->port);
