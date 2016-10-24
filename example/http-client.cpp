@@ -83,5 +83,6 @@ int main (int argc, char** argv)
 
 
     sockClient->Close();  //close the socket and clean up
+    delete sockClient;
     return 0;
 }

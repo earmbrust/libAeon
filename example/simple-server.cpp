@@ -24,6 +24,8 @@ int main(void)
     net::CEventSocketSet* socketset = new net::CEventSocketSet();
     if (server->Listen(SERVER_PORT) == false) {
         printf("Error when opening port.\r\n");
+        delete server;
+        delete socketset;
         return EXIT_FAILURE;
     }
     printf("Waiting for connection...\r\n");
@@ -33,7 +35,7 @@ int main(void)
         socketset->Add((net::CEventSocket*)(new childsock));
 
         // childsock = socketset->Sockets[socketset->Size()-1];
-        socketset->Sockets[socketset->Size() - 1] = (childsock*)server->Accept();
+        socketset->Sockets[socketset->Size() - 1] = static_cast<childsock*>(server)->Accept();
         if (socketset->Sockets[socketset->Size() - 1]->connected == true) {
             ++iConnectionCount;
 
@@ -53,5 +55,7 @@ int main(void)
         socketset->Poll();
 
         server->Close();
+        delete server;
+        delete socketset;
     }
 }
