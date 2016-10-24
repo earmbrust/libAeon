@@ -44,6 +44,7 @@ int main (int argc, char** argv)
 
     if (sockClient->Connect((char*)sDomain.c_str(), 80) != true) {
         printf("Connection error!\r\n");
+        delete sockClient;
         return EXIT_FAILURE;
     }
 
