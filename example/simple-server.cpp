@@ -1,6 +1,6 @@
 /******************************************************************
  * simple-server.cpp - A simple "Hello world!" server using libaeon
- * Copyright (c) 2006-2016 Elden Armbrust
+ * Copyright (c) 2006-2018 Elden Armbrust
  ******************************************************************/
 
 #include <libaeon.h>
