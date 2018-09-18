@@ -1,6 +1,6 @@
 /*********************************************************************
  * libaeon - A simple, lightweight, cross platform networking library
- * Copyright 2006-2016 (c) Elden Armbrust
+ * Copyright 2006-2018 (c) Elden Armbrust
  * This software is licensed under the BSD software license.
  *********************************************************************/
 
@@ -67,9 +67,7 @@ namespace net
         return false;
     };
 
-    void CEventSocket::OnWrite(const char* buffer, int size, int sentsize)
-    {};
-
+    void CEventSocket::OnWrite(const char* buffer, int size, int sentsize) {};
 }
 
 #endif
