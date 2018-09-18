@@ -48,7 +48,7 @@ int main(void)
         }
         socketset->Poll();
 
-        server->Close();
+        // server->Close();
 
     }
     delete server;
