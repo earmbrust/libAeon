@@ -41,6 +41,7 @@ int main()
             std::cout << "Client accepted." << std::endl;
             client->Write((char *)"Hello world!\n"); //send our hello world
             client->Close(); //close the socket and prepare for another connection
+			std::cout << "Client connection closed." << std::endl;
         }
 
     }

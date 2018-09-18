@@ -46,9 +46,9 @@ int main(void)
                 printf("Error sending data to client!\r\n");
             }
             printf("Sent message.\r\n");
-            // socketset->Sockets[socketset->Size()-1]->Close();
-            // printf("Connection closed.\r\n");
-            // socketset->Sockets[socketset->Size()-1]->connected = false;
+             socketset->Sockets[socketset->Size()-1]->Close();
+             printf("Connection closed.\r\n");
+             socketset->Sockets[socketset->Size()-1]->connected = false;
         }
         socketset->Poll();
 
