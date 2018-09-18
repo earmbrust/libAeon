@@ -45,10 +45,6 @@ int main(void)
             if (socketset->Sockets[socketset->Size() - 1]->Write((char *)"Hello, world!\r\n") == -1) {
                 printf("Error sending data to client!\r\n");
             }
-            printf("Sent message.\r\n");
-             socketset->Sockets[socketset->Size()-1]->Close();
-             printf("Connection closed.\r\n");
-             socketset->Sockets[socketset->Size()-1]->connected = false;
         }
         socketset->Poll();
 
